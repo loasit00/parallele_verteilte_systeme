@@ -2,7 +2,6 @@ package com.example.distributed_systems_todoapp;
 
 
 public class Todo {
-
     public int id;
     public String content;
     public Boolean completed = Boolean.FALSE;
