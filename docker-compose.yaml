@@ -1,0 +1,28 @@
+version: '3'
+services:
+  db:
+    image: postgres:latest
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: todoDB
+    volumes:
+      - ./database:/var/lib/postgresql
+
+  backend:
+    image: ds_todo:v1
+    ports:
+      - 8080:8080
+    environment:
+      DB_HOST: db
+      DB_PORT: 5432
+      DB_NAME: todoDB
+      DB_USER: postgres
+      DB_PASSWORD: password
+    depends_on:
+      - db
+
+volumes:
+  mongodb_data:
