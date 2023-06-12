@@ -1,7 +1,10 @@
-name: Build and Deploy Action
+name: Build Action for backend
 
 on:
   push:
+    paths:
+      - backend/**
+      - .github/workflows/buildBackend.yaml
     branches:
       - main
 
