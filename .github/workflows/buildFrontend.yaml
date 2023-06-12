@@ -8,6 +8,10 @@ on:
     branches:
       - main
 
+concurrency:
+  group: build-${{ github.ref }}-frontend
+  cancel-in-progress: true
+
 jobs:
   build:
     name: Build
