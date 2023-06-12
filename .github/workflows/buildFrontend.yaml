@@ -5,8 +5,8 @@ on:
     paths:
       - frontend/**
       - .github/workflows/buildFrontend.yaml
-    branches:
-      - main
+#    branches:
+#      - main
 
 concurrency:
   group: build-${{ github.ref }}-frontend

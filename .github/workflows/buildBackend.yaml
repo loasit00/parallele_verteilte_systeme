@@ -5,8 +5,8 @@ on:
     paths:
       - backend/**
       - .github/workflows/buildBackend.yaml
-    branches:
-      - main
+#    branches:
+#      - main
 
 concurrency:
   group: build-${{ github.ref }}-backend
