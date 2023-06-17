@@ -1,9 +1,9 @@
 version: '3'
 services:
-  db:
+  ds_todo_db:
     image: postgres:alpine
     restart: always
-    container_name: ds_todo__db
+    container_name: ds_todo_db
     environment:
       POSTGRES_PASSWORD: postgres
       POSTGRES_USER: postgres
@@ -13,20 +13,20 @@ services:
     ports:
       - 5432:5432
 
-  backend:
+  ds_todo_backend:
     restart: always
     build:
       context: ./backend
       dockerfile: Dockerfile
     image: ds_todo_backend:v1
-    container_name: todo_backend
+    container_name: ds_todo_backend
     depends_on:
-      - db
+      - ds_todo_db
     environment:
       DATABASE_TYPE: postgres
-      DATABASE_URL: postgres://postgres:postgres@db:5432/postgres
-      PORT: 9000
+      DATABASE_URL: postgres://postgres:postgres@ds_todo_db:5432/postgres
+      PORT: 8080
     ports:
-      - 9000:9000
+      - 8080:8080
 volumes:
   pgdata:

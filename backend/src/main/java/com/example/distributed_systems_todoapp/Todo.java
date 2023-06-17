@@ -8,24 +8,24 @@ public class Todo {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    public int id;
+    public Long id;
     
     public String content;
     public Boolean completed = Boolean.FALSE;
 
     public Todo() {}
 
-    public Todo(int id, String content, Boolean completed) {
+    public Todo(Long id, String content, Boolean completed) {
         this.id = id;
         this.content = content;
         this.completed = completed;
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
     

@@ -30,13 +30,13 @@ public class TodosController {
 	@GetMapping("/todo")
 	public List<Todo> getAllTodos(){
 		List<Todo> allTodos = new ArrayList<Todo>();
-		todoRepository.findAll().forEach(todo -> allTodos.add(todo)).orElseThrow(() -> new NoSuchElementException("There are no todos"));
+		todoRepository.findAll().forEach(todo -> allTodos.add(todo));
 		return allTodos;
 	}
 
 	@GetMapping("/todo/{id}")
-	public Todo getTodoById(@PathVariable int idTodo){
-		return todoRepository.findById(idTodo).get().orElseThrow(() -> new NoSuchElementException("Todo not found"));
+	public Todo getTodoById(@PathVariable Long idTodo){
+		return todoRepository.findById(idTodo).get();
 	}
 
 	@PostMapping("/todo")
