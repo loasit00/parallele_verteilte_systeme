@@ -58,10 +58,9 @@ public class TodosController {
 		Optional<Todo> oTodo = todoRepository.findById(id);
 
 		if(oTodo.isPresent()){
-			Todo uTodo = oTodo.get();
-			uTodo.setContent(todo.content);
-			uTodo.setCompleted(todo.completed);
-			return uTodo;
+			oTodo.get().setContent(todo.content);
+			oTodo.get().setCompleted(todo.completed);
+			return oTodo.get();
 		}
 		else
 		{
