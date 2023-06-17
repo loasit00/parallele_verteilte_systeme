@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -36,11 +37,13 @@ public class TodosController {
 
 	@GetMapping("/todo/{id}")
 	public Todo getTodoById(@PathVariable Long idTodo){
-		public Optional<Todo> todo = todoRepository.findById(idTodo);
+		Optional<Todo> oTodo = todoRepository.findById(idTodo);
 
-		if (todo.isPresent()) {
-			return todo.get();
-		} else {
+		if(oTodo.isPresent()){
+			return oTodo.get();
+		}
+		else
+		{
 			return null;
 		}
 	}
@@ -52,21 +55,27 @@ public class TodosController {
 
 	@PutMapping("/todo/{id}")
 	public Todo updateTodo(@PathVariable Long idTodo, @RequestBody Todo todo){
-		public Optional<Todo> oTodo = todoRepository.findById(idTodo);
+		Optional<Todo> oTodo = todoRepository.findById(idTodo);
 
-		if (oTodo.isPresent()) {
-			oTodo.setContent(todo.content);
-			oTodo.setCompleted(todo.setCompleted);
-
-		} else {
+		if(oTodo.isPresent()){
+			Todo uTodo = oTodo.get();
+			uTodo.setContent(todo.content);
+			uTodo.setCompleted(todo.completed);
+			return uTodo;
+		}
+		else
+		{
 			return null;
 		}
-
 	}
 
 	@DeleteMapping("/todo/{id}")
 	public void removeTodo(@PathVariable Long idTodo){
-		todoRepository.deleteById(idTodo);
+		Optional<Todo> oTodo = todoRepository.findById(idTodo);
+
+		if(oTodo.isPresent()){
+			todoRepository.deleteById(idTodo);
+		}
 	}
 
 	@DeleteMapping("/todo")
