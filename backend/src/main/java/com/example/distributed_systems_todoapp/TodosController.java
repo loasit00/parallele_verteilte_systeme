@@ -36,7 +36,13 @@ public class TodosController {
 
 	@GetMapping("/todo/{id}")
 	public Todo getTodoById(@PathVariable Long idTodo){
-		return todoRepository.findById(idTodo).get();
+		public Optional<Todo> todo = todoRepository.findById(idTodo);
+
+		if (todo.isPresent()) {
+			return todo.get();
+		} else {
+			return null;
+		}
 	}
 
 	@PostMapping("/todo")
@@ -44,8 +50,27 @@ public class TodosController {
 		return todoRepository.save(newItem);
 	}
 
+	@PutMapping("/todo/{id}")
+	public Todo updateTodo(@PathVariable Long idTodo, @RequestBody Todo todo){
+		public Optional<Todo> oTodo = todoRepository.findById(idTodo);
+
+		if (oTodo.isPresent()) {
+			oTodo.setContent(todo.content);
+			oTodo.setCompleted(todo.setCompleted);
+
+		} else {
+			return null;
+		}
+
+	}
+
+	@DeleteMapping("/todo/{id}")
+	public void removeTodo(@PathVariable Long idTodo){
+		todoRepository.deleteById(idTodo);
+	}
+
 	@DeleteMapping("/todo")
-	public void removeTodo(@RequestBody Todo todo){
-		todoRepository.delete(todo);
+	public void removeAllTodos(){
+		todoRepository.deleteAll();
 	}
 }
