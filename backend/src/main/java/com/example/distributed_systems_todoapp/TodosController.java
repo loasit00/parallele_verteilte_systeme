@@ -36,8 +36,8 @@ public class TodosController {
 	}
 
 	@GetMapping("/todo/{id}")
-	public Todo getTodoById(@PathVariable Long idTodo){
-		Optional<Todo> oTodo = todoRepository.findById(idTodo);
+	public Todo getTodoById(@PathVariable Long id){
+		Optional<Todo> oTodo = todoRepository.findById(id);
 
 		if(oTodo.isPresent()){
 			return oTodo.get();
@@ -54,8 +54,8 @@ public class TodosController {
 	}
 
 	@PutMapping("/todo/{id}")
-	public Todo updateTodo(@PathVariable Long idTodo, @RequestBody Todo todo){
-		Optional<Todo> oTodo = todoRepository.findById(idTodo);
+	public Todo updateTodo(@PathVariable Long id, @RequestBody Todo todo){
+		Optional<Todo> oTodo = todoRepository.findById(id);
 
 		if(oTodo.isPresent()){
 			Todo uTodo = oTodo.get();
@@ -70,11 +70,11 @@ public class TodosController {
 	}
 
 	@DeleteMapping("/todo/{id}")
-	public void removeTodo(@PathVariable Long idTodo){
-		Optional<Todo> oTodo = todoRepository.findById(idTodo);
+	public void removeTodo(@PathVariable Long id){
+		Optional<Todo> oTodo = todoRepository.findById(id);
 
 		if(oTodo.isPresent()){
-			todoRepository.deleteById(idTodo);
+			todoRepository.deleteById(id);
 		}
 	}
 
