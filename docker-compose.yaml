@@ -18,7 +18,7 @@ services:
     build:
       context: ./backend
       dockerfile: Dockerfile
-    image: ds_todo_backend:v1
+    image: loasit00/ds_todo_backend:v1
     container_name: ds_todo_backend
     depends_on:
       - ds_todo_db
