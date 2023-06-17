@@ -1,70 +1,51 @@
 package com.example.distributed_systems_todoapp;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.http.MediaType;
-import java.util.*;
-import java.util.stream.Collectors;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 
 @RestController
 public class TodosController {
 
-	private List<Todo> todoList = new ArrayList<>();
+	@Autowired
+	TodoRepository todoRepository;
 
 	@RequestMapping("/")
 	public String welcome() {
 		return "Todo App Esslingen SS23";
 	}
 
-	@GetMapping("/todo") 
-	public List<Todo> getTodos() {
-		return todoList;
+	@GetMapping("/todo")
+	public List<Todo> getAllTodos(){
+		List<Todo> allTodos = new ArrayList<Todo>();
+		todoRepository.findAll().forEach(todo -> allTodos.add(todo)).orElseThrow(() -> new NoSuchElementException("There are no todos"));
+		return allTodos;
 	}
 
-    @GetMapping("/todo/{todoId}")
-	public Todo getTodoByID(@PathVariable int todoId){
-		Todo tmpTodo = new Todo();
-
-		for(Todo todo : todoList){
-			if(todo.getId() == todoId){
-				return todo;
-			}
-		}
-		return tmpTodo;
+	@GetMapping("/todo/{id}")
+	public Todo getTodoById(@PathVariable int idTodo){
+		return todoRepository.findById(idTodo).get().orElseThrow(() -> new NoSuchElementException("Todo not found"));
 	}
 
 	@PostMapping("/todo")
-	public Todo createTodo(@RequestBody Todo newTodo) {
-		todoList.add(newTodo);
-        return newTodo;
+	public Todo addNewTodo(@RequestBody Todo newItem){
+		return todoRepository.save(newItem);
 	}
 
-	@PutMapping("/todo/{todoId}")
-	public Todo updateTodo(@PathVariable int todoId, @RequestBody Todo updateTodo) {
-		Todo tmpTodo = new Todo();
-
-		for(Todo todo : todoList){
-			if(todo.getId() == todoId){
-				todo.setId(updateTodo.id);
-				todo.setContent(updateTodo.content);
-				todo.setCompleted(updateTodo.completed);
-				return todo;
-			}
-		}
-		return tmpTodo;
+	@DeleteMapping("/todo")
+	public void removeTodo(@RequestBody Todo todo){
+		todoRepository.delete(todo);
 	}
-
-	@DeleteMapping("/todo/{todoId}")
-	public String deleteTodo(@PathVariable int todoId) {
-		for(Todo todo : todoList){
-			if(todo.getId() == todoId){
-				todoList.remove(todo);
-				return "todo successfully deleted";
-			}
-		}
-		return "no todo with this id";
-	}
-
 }
