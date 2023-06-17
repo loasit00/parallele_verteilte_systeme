@@ -1,8 +1,15 @@
 package com.example.distributed_systems_todoapp;
 
+import jakarta.persistence.*;
 
+@Entity
+@Table(name = "todo")
 public class Todo {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     public int id;
+    
     public String content;
     public Boolean completed = Boolean.FALSE;
 
