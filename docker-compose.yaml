@@ -12,6 +12,8 @@ services:
       - pgdata:/var/lib/postgresql/data
     ports:
       - 5432:5432
+    networks:
+      - todoLab
 
   ds_todo_backend:
     restart: always
@@ -41,7 +43,7 @@ services:
       - "8090:8090"
     environment:
       - SERVER_PORT=8090
-      - BACKEND_ENDPOINT=http://ds_todo_backend:8080
+      - BACKEND_ENDPOINT=https://8080-loasit00-paralleleverte-664y5bfzfq2.ws-eu100.gitpod.io/todo
     depends_on:
       - ds_todo_backend
     networks:
@@ -51,4 +53,4 @@ volumes:
 
 networks:
   todoLab:
-    driver: bridge
+    name: todoLab
