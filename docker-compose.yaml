@@ -28,6 +28,8 @@ services:
       PORT: 8080
     ports:
       - 8080:8080
+    networks:
+      - todoLab
 
   ds_todo_frontend:
     build:
@@ -42,5 +44,11 @@ services:
       - BACKEND_ENDPOINT=http://ds_todo_backend:8080
     depends_on:
       - ds_todo_backend
+    networks:
+      - todoLab
 volumes:
   pgdata:
+
+networks:
+  todoLab:
+    driver: bridge
