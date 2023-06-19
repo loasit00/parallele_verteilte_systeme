@@ -11,25 +11,11 @@ public class Todo implements Serializable{
 
     public Todo(String content){
         this.content = content;
-    }
-
-
-    public Todo(String todo) {
-        this.todo = todo;
-    }    
+    }  
     
-   public Todo(Long id, String content, Boolean completed) {
-        this.id = id;
+   public Todo(String content, Boolean completed) {
         this.content = content;
         this.completed = completed;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
     
     public String getContent() {
