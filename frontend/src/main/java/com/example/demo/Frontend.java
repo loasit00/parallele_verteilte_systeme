@@ -55,10 +55,10 @@ public class Frontend {
 	}
 
     @DeleteMapping("/delete")
-    public String deleteItem(@RequestParam String todo){
+    public String deleteItem(@RequestParam Long id){
 
         WebClient
-            .create(todoApiEndpoint+todo)
+            .create(todoApiEndpoint + "/" + id)
             .delete()
             .retrieve()
             .bodyToMono(Void.class)

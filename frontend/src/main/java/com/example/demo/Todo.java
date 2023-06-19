@@ -4,10 +4,15 @@ import java.io.Serializable;
 
 public class Todo implements Serializable{
 
+    public Long id;
     public String content;
     public Boolean completed = Boolean.FALSE;
     
     public Todo(){}
+
+    public Todo(Long id){
+        this.id = id;
+    }
 
     public Todo(String content){
         this.content = content;
@@ -16,6 +21,14 @@ public class Todo implements Serializable{
    public Todo(String content, Boolean completed ) {
         this.content = content;
         this.completed  = completed ;
+    }
+
+    public Long getId() {
+    return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
     
     public String getContent() {
