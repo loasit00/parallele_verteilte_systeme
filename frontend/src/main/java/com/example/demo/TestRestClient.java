@@ -11,7 +11,7 @@ import reactor.core.publisher.Mono;
 @RestController
 public class TestRestClient {
 
-    @GetMapping("/testRestList")
+    @GetMapping("/")
     public String testRestList(){
 
         return WebClient.create("https://8080-loasit00-paralleleverte-664y5bfzfq2.ws-eu100.gitpod.io/todo")
@@ -23,7 +23,7 @@ public class TestRestClient {
 
     }
 
-    @GetMapping("/testGetRestObject")
+    @GetMapping("/todo/1")
     public String testRestObject(){
 
         return WebClient.create("https://8080-loasit00-paralleleverte-664y5bfzfq2.ws-eu100.gitpod.io/todo/1")
@@ -35,11 +35,11 @@ public class TestRestClient {
 
     }
 
-    @PostMapping("/testPostRestObject")
+    @PostMapping("/todo")
     public Todo testPostRestObject(){
 
         return WebClient
-            .create("https://8080-loasit00-paralleleverte-664y5bfzfq2.ws-eu100.gitpod.io/todo/one")
+            .create("https://8080-loasit00-paralleleverte-664y5bfzfq2.ws-eu100.gitpod.io/todo")
             .post()
             .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
             .body(Mono.just(new Todo("one")), Todo.class)
