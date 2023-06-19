@@ -5,7 +5,7 @@ import java.io.Serializable;
 public class Todo implements Serializable{
 
     public String content;
-    public int priority;
+    public int priority = 2;
     
     public Todo(){}
 

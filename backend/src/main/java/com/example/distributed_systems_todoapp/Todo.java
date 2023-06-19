@@ -11,7 +11,7 @@ public class Todo {
     public Long id;
     
     public String content;
-    public int priority;
+    public int priority = 2;
 
     public Todo() {}
 
