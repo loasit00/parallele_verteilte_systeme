@@ -1,3 +1,4 @@
+/*
 package com.example.demo;
 
 import org.springframework.http.HttpHeaders;
@@ -14,7 +15,8 @@ import reactor.core.publisher.Mono;
 @RestController
 public class TestRestClient {
 
-    @GetMapping("/testRestList")
+
+    @GetMapping("/")
     public String testRestList(){
 
         return WebClient.create("https://8080-loasit00-paralleleverte-664y5bfzfq2.ws-eu100.gitpod.io/todo")
@@ -53,3 +55,4 @@ public class TestRestClient {
     }
     
 }
+*/
