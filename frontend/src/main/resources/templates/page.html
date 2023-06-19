@@ -21,7 +21,7 @@
             <td th:text="${item.completed}"/>
             <td>
                 <form method="POST" th:action="@{/delete}">
-                    <input type="hidden" name="todo" th:value="${item.todo}" />
+                    <input type="hidden" name="todo" th:value="${item.content}" />
                     <input type="submit" value="Done!"/>
                 </form>
             </td>
