@@ -14,7 +14,7 @@ import reactor.core.publisher.Mono;
 @RestController
 public class TestRestClient {
 
-    @GetMapping("/")
+    @GetMapping("/testRestList")
     public String testRestList(){
 
         return WebClient.create("https://8080-loasit00-paralleleverte-664y5bfzfq2.ws-eu100.gitpod.io/todo")
