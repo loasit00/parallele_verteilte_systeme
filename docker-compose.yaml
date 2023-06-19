@@ -28,5 +28,17 @@ services:
       PORT: 8080
     ports:
       - 8080:8080
+
+  ds_todo_frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    image: loasit00/ds_todo_frontend:v1
+    container_name: ds_todo_frontend
+    ports:
+      - "8090:8090"
+    environment:
+      - SERVER_PORT=8090
+      - BACKEND_ENDPOINT=http://backend:8080/todos/
 volumes:
   pgdata:
