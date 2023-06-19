@@ -22,11 +22,11 @@ public class Frontend {
     @GetMapping("/")
     public String displayPage(Model model) {
 
-        TodoItem[] items = WebClient
+        Todo[] items = WebClient
                 .create(todoApiEndpoint)
                 .get()
                 .retrieve()
-                .bodyToMono(TodoItem[].class)
+                .bodyToMono(Todo[].class)
                 .block();
 
         model.addAttribute("items", items);
@@ -37,7 +37,7 @@ public class Frontend {
     @PostMapping("/create")
 	public String addItem(@RequestParam String newItem, @RequestParam int priority, Model model){
 
-        TodoItem item = new TodoItem();
+        Todo item = new Todo();
         item.todo = newItem;
         item.priority = priority;
 
@@ -45,9 +45,9 @@ public class Frontend {
             .create(todoApiEndpoint)
             .post()
             .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
-            .body(Mono.just(item), TodoItem.class)
+            .body(Mono.just(item), Todo.class)
             .retrieve()
-            .bodyToMono(TodoItem.class)
+            .bodyToMono(Todo.class)
             .block();
 
         return "redirect:/";
