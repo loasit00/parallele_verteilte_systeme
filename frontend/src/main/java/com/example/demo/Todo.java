@@ -9,6 +9,11 @@ public class Todo implements Serializable{
     
     public Todo(){}
 
+    public Todo(String content){
+        this.content = content;
+    }
+
+
     public Todo(String todo) {
         this.todo = todo;
     }    
