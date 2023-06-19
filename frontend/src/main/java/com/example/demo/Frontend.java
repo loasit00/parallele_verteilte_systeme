@@ -35,10 +35,10 @@ public class Frontend {
     }
 
     @PostMapping("/create")
-	public String addItem(@RequestParam String todo, @RequestParam Boolean completed, Model model){
+	public String addItem(@RequestParam String content, @RequestParam Boolean completed, Model model){
 
         Todo item = new Todo();
-        item.content = todo;
+        item.content = content;
         item.completed = completed;
 
         WebClient
