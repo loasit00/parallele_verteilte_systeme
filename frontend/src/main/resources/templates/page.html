@@ -13,12 +13,11 @@
     <table>
         <tr>
             <th>ToDo</th>
-            <th>priority </th>
-            <th>Done?</th>
+            <th>completed </th>
         </tr>
         <tr th:each="item : ${items}">
             <td th:text="${item.content}"/>
-            <td th:text="${item.priority }"/>
+            <td th:text="${item.completed }"/>
             <td>
                 <form method="POST" th:action="@{/delete}">
                     <input type="hidden" name="todo" th:value="${item.content}" />
@@ -33,7 +32,7 @@
     <table>
         <tr>
             <th>ToDo</th>
-            <th>priority </th>
+            <th>completed </th>
             <th>Done?</th>
         </tr>
         <tr>
@@ -49,8 +48,8 @@
     <form method="POST" th:action="@{/create}">
         <label for="newitem">New ToDo Item</label>
         <input type="text" name="newItem" th:value="${newItem}" />
-        <label>priority </label>
-        <input type="text" name="priority " th:value="${priority }" />
+        <label>completed </label>
+        <input type="text" name="completed " th:value="${completed }" />
         <input type="submit" value="Add!">
     </form>
 </div>
