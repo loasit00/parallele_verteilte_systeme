@@ -11,14 +11,14 @@ public class Todo {
     public Long id;
     
     public String content;
-    public Boolean completed = Boolean.FALSE;
+    public int priority;
 
     public Todo() {}
 
-    public Todo(Long id, String content, Boolean completed) {
+    public Todo(Long id, String content, int priority ) {
         this.id = id;
         this.content = content;
-        this.completed = completed;
+        this.priority  = priority ;
     }
 
     public Long getId() {
@@ -37,11 +37,11 @@ public class Todo {
         this.content = content;
     }
 
-    public Boolean getCompleted() {
-        return completed;
+    public int getpriority () {
+        return priority ;
     }
 
-    public void setCompleted(Boolean completed) {
-        this.completed = completed;
+    public void setpriority (int priority ) {
+        this.priority  = priority ;
     }
 }

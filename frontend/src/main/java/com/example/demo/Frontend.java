@@ -35,11 +35,11 @@ public class Frontend {
     }
 
     @PostMapping("/create")
-	public String addItem(@RequestParam String content, @RequestParam Boolean completed, Model model){
+	public String addItem(@RequestParam String content, @RequestParam int priority , Model model){
 
         Todo item = new Todo();
         item.content = content;
-        item.completed = completed;
+        item.priority  = priority ;
 
         WebClient
             .create(todoApiEndpoint)

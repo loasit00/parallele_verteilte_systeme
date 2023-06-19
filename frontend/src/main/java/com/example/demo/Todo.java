@@ -5,7 +5,7 @@ import java.io.Serializable;
 public class Todo implements Serializable{
 
     public String content;
-    public Boolean completed = Boolean.FALSE;
+    public int priority;
     
     public Todo(){}
 
@@ -13,9 +13,9 @@ public class Todo implements Serializable{
         this.content = content;
     }  
     
-   public Todo(String content, Boolean completed) {
+   public Todo(String content, int priority ) {
         this.content = content;
-        this.completed = completed;
+        this.priority  = priority ;
     }
     
     public String getContent() {
@@ -26,17 +26,17 @@ public class Todo implements Serializable{
         this.content = content;
     }
 
-    public Boolean getCompleted() {
-        return completed;
+    public int getpriority () {
+        return priority ;
     }
 
-    public void setCompleted(Boolean completed) {
-        this.completed = completed;
+    public void setpriority (int priority ) {
+        this.priority  = priority ;
     }
 
     @Override
     public String toString() {
-        return "Todo [todo=" + content + ", completed=" + completed + "]";
+        return "Todo [todo=" + content + ", priority =" + priority  + "]";
     }
     
 }
