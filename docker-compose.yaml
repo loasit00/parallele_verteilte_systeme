@@ -39,6 +39,9 @@ services:
       dockerfile: Dockerfile
     image: loasit00/frontend:v1
     container_name: frontend
+    environment:
+      - SERVER_PORT=8090
+      - BACKEND_ENDPOINT=http://backend:8080/todo
     ports:
       - "8090:8090"
     depends_on:

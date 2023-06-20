@@ -57,7 +57,7 @@ public class Frontend {
     public String deleteItem(@RequestParam String content){
 
         WebClient
-            .create(todoApiEndpoint+content)
+            .create(todoApiEndpoint+'/'+content)
             .delete()
             .retrieve()
             .bodyToMono(Void.class)
