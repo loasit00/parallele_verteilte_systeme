@@ -6,6 +6,6 @@ import jakarta.transaction.Transactional;
 
 
 @Transactional
-public interface TodoRepository extends CrudRepository<Todo, Long>{
+public interface TodoRepository extends CrudRepository<Todo, String>{
     
 }
