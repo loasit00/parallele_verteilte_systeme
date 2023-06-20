@@ -36,7 +36,7 @@ public class Todo {
     }
 
     public Todo(){
-        content = 'no content';
+        this.content = 'no content';
     }
 
     @Override
