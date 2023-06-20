@@ -41,5 +41,5 @@ jobs:
           context: ./backend
           file: ./backend/Dockerfile
           push: true
-          tags: loasit00/ds_todo_backend:v1
+          tags: loasit00/backend:v1
 

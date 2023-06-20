@@ -1,9 +1,9 @@
 version: '3'
 services:
-  ds_todo_db:
+  db:
     image: postgres:alpine
     restart: always
-    container_name: ds_todo_db
+    container_name: db
     environment:
       POSTGRES_PASSWORD: postgres
       POSTGRES_USER: postgres
@@ -15,34 +15,34 @@ services:
     networks:
       - todoLab
 
-  ds_todo_backend:
+  backend:
     restart: always
     build:
       context: ./backend
       dockerfile: Dockerfile
-    image: loasit00/ds_todo_backend:v1
-    container_name: ds_todo_backend
+    image: loasit00/backend:v1
+    container_name: backend
     depends_on:
-      - ds_todo_db
+      - db
     environment:
       DATABASE_TYPE: postgres
-      DATABASE_URL: postgres://postgres:postgres@ds_todo_db:5432/postgres
+      DATABASE_URL: postgres://postgres:postgres@db:5432/postgres
       PORT: 8080
     ports:
       - 8080:8080
     networks:
       - todoLab
 
-  ds_todo_frontend:
+  frontend:
     build:
       context: ./frontend
       dockerfile: Dockerfile
-    image: loasit00/ds_todo_frontend:v1
-    container_name: ds_todo_frontend
+    image: loasit00/frontend:v1
+    container_name: frontend
     ports:
       - "8090:8090"
     depends_on:
-      - ds_todo_backend
+      - backend
     networks:
       - todoLab
 volumes:
