@@ -6,27 +6,15 @@ import jakarta.persistence.*;
 @Table(name = "todo")
 public class Todo {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    public Long id;
-    
+    @Id    
     public String content;
     public int priority = 2;
 
     public Todo() {}
 
-    public Todo(Long id, String content, int priority ) {
-        this.id = id;
+    public Todo(String content, int priority ) {
         this.content = content;
         this.priority  = priority ;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
     
     public String getContent() {
