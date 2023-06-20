@@ -14,8 +14,6 @@ public class Todo {
     public String content;
     public int priority = 2;
 
-    public Todo() {}
-
     public Todo(String content, int priority ) {
         this.content = content;
         this.priority  = priority ;
@@ -30,14 +28,14 @@ public class Todo {
     }
 
     public int getPriority () {
-        return priority ;
+        return priority;
     }
 
     public void setPriority (int priority ) {
-        this.priority  = priority ;
+        this.priority  = priority;
     }
 
-    Todo(){
+    public Todo(){
         content = 'no content';
     }
 
