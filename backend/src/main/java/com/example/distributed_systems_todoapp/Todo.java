@@ -35,8 +35,8 @@ public class Todo {
         this.priority  = priority;
     }
 
-    public Todo(){
-        this.content = 'no content';
+    Todo(){
+        content = "no content";
     }
 
     @Override
