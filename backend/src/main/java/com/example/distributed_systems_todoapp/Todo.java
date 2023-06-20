@@ -11,7 +11,7 @@ import jakarta.persistence.Table;
 public class Todo {
 
     @Id
-    public String content;
+    public String content = '';
     public int priority = 2;
 
     public Todo() {}
