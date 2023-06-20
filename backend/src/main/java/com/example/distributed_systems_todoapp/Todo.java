@@ -1,4 +1,4 @@
-package hse.distributedSystems.LabBackEnd.model;
+package com.example.distributed_systems_todoapp;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -7,11 +7,11 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "todos")
+@Table(name = "todo")
 public class Todo {
 
     @Id
-    private String content;
+    public String content;
     public int priority = 2;
 
     public Todo() {}
