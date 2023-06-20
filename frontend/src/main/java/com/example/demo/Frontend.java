@@ -7,7 +7,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.reactive.function.client.WebClient;
@@ -36,11 +35,11 @@ public class Frontend {
     }
 
     @PostMapping("/create")
-	public String addItem(@RequestParam String content, @RequestParam Boolean completed , Model model){
+	public String addItem(@RequestParam String newItem, @RequestParam int priority, Model model){
 
         Todo item = new Todo();
-        item.content = content;
-        item.completed  = completed ;
+        item.content = newItem;
+        item.priority = priority;
 
         WebClient
             .create(todoApiEndpoint)
@@ -54,11 +53,11 @@ public class Frontend {
         return "redirect:/";
 	}
 
-    @DeleteMapping("/delete")
-    public String deleteItem(@RequestParam Long id){
+    @PostMapping("/delete")
+    public String deleteItem(@RequestParam String content){
 
         WebClient
-            .create(todoApiEndpoint + "/" + id)
+            .create(todoApiEndpoint+content)
             .delete()
             .retrieve()
             .bodyToMono(Void.class)

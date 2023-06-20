@@ -59,7 +59,7 @@ public class TodosController {
 
 		if(oTodo.isPresent()){
 			oTodo.get().setContent(todo.content);
-			oTodo.get().setcompleted (todo.completed );
+			oTodo.get().setPriority (todo.priority );
 			return todoRepository.save(oTodo.get());
 		}
 		else

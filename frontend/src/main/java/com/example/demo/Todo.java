@@ -4,52 +4,60 @@ import java.io.Serializable;
 
 public class Todo implements Serializable{
 
-    public Long id;
     public String content;
-    public Boolean completed = Boolean.FALSE;
+    public int priority = 2;
     
     public Todo(){}
 
-    public Todo(Long id){
-        this.id = id;
-    }
-
-    public Todo(String content){
+    public Todo(String content) {
         this.content = content;
-    }  
+    }    
     
-   public Todo(String content, Boolean completed ) {
+    public Todo(String content, int priority) {
         this.content = content;
-        this.completed  = completed ;
+        this.priority = priority;
     }
 
-    public Long getId() {
-    return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-    
     public String getContent() {
         return content;
     }
 
-    public void setContent(String content) {
-        this.content = content;
+    public int getPriority() {
+        return priority;
     }
-
-    public Boolean getcompleted () {
-        return completed ;
-    }
-
-    public void setcompleted (Boolean completed ) {
-        this.completed  = completed ;
+    
+    public void setPriority(int priority) {
+        this.priority = priority;
     }
 
     @Override
     public String toString() {
-        return "Todo [todo=" + content + ", completed =" + completed  + "]";
+        return "Todo [content=" + content + ", priority=" + priority + "]";
+    }
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((content == null) ? 0 : content.hashCode());
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        Todo other = (Todo) obj;
+        if (content == null) {
+            if (other.content != null)
+                return false;
+        } else if (!content.equals(other.content))
+            return false;
+        return true;
     }
     
 }

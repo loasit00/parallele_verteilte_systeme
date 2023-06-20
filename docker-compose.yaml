@@ -41,9 +41,6 @@ services:
     container_name: ds_todo_frontend
     ports:
       - "8090:8090"
-    environment:
-      - SERVER_PORT=8090
-      - BACKEND_ENDPOINT=https://8080-loasit00-paralleleverte-664y5bfzfq2.ws-eu100.gitpod.io/todo
     depends_on:
       - ds_todo_backend
     networks:
