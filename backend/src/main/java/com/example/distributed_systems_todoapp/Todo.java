@@ -7,7 +7,7 @@ import jakarta.persistence.*;
 public class Todo {
 
     @Id    
-    private String content;
+    public String content;
     public int priority = 2;
 
     public Todo() {}
